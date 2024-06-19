@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .converter {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="number"], input[type="text"] {
+            width: 200px;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[readonly] {
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .reset {
+            background-color: #dc3545;
+        }
+        .reset:hover {
+            background-color: #c82333;
+        }
+        .reverse {
+            background-color: #007bff;
+        }
+        .reverse:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Temperature Converter</h1>
+        <input type="number" id="celsius" placeholder="Celsius">
+        <input type="number" id="fahrenheit" placeholder="Fahrenheit" readonly>
+        <br>
+        <button onclick="convertToFahrenheit()">Convert</button>
+        <button class="reset" onclick="resetFields()">Reset</button>
+        <button class="reverse" onclick="convertToCelsius()">Reverse</button>
+        <br>
+        <input type="text" id="formula" value="Formula: (°C × 9/5) + 32 = °F" readonly>
+    </div>
+
+    <script>
+        function convertToFahrenheit() {
+            var celsius = document.getElementById('celsius').value;
+            if (celsius === '') {
+                alert('Please enter a Celsius value.');
+                return;
+            }
+            var fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById('fahrenheit').value = fahrenheit.toFixed(2);
+        }
+
+        function resetFields() {
+            document.getElementById('celsius').value = '';
+            document.getElementById('fahrenheit').value = '';
+        }
+
+        function convertToCelsius() {
+            var fahrenheit = document.getElementById('fahrenheit').value;
+            if (fahrenheit === '') {
+                alert('Please enter a Fahrenheit value.');
+                return;
+            }
+            var celsius = (fahrenheit - 32) * 5/9;
+            document.getElementById('celsius').value = celsius.toFixed(2);
+        }
+    </script>
+</body>
+</html>
